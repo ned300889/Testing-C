@@ -50,23 +50,34 @@ int main () {
  *
  * Create loop to run through benchmark 15 times and gather the average
  *
- */	
-	system("pgbench benchmark -c 100 -T 30 -S -n");
+ */
+	int i;
 
+	for ( i = 0 ; i <= 15; i++){ 
+	system("pgbench benchmark -c 100 -T 3 -S -n >> /tmp/results.txt");
+	}
 
+    char c[1000];
+    FILE *fptr;
+
+    if ((fptr = fopen("/tmp/results.txt", "r")) == NULL)
+    {
+        printf("Error! opening file");
+        // Program exits if file pointer returns NULL.
+        exit(1);         
+    }
+
+    // reads text until newline 
+    fscanf(fptr,"%[^\n]", c);
+
+    printf("Data from the file:\n%s", c);
+    fclose(fptr);
+    
+    return 0;
 	PQclear(res);
 	PQfinish(conn);
 
 	return 0;
 
 
-
-
 }
-
-
-
-
-
-				
-				
