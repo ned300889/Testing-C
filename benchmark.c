@@ -36,7 +36,7 @@ int main (int argc, char *argv[]) {
 	}
 	PQclear(res);
 
-	res = PQexec(conn, "CREATE database benchmark");
+	res = PQexec(conn, "CREATE DATABASE benchmark");
 		if (PQresultStatus(res) != PGRES_COMMAND_OK) {
 			do_exit(conn, res);
 		}
@@ -57,13 +57,14 @@ int main (int argc, char *argv[]) {
 
 	for ( i = 0 ; i <= 15; i++){ 
 	
-	fp = popen("pgbench benchmark -c 100 -T 3 -S -n", "r");
+	fp = popen("pgbench benchmark -c 100 -T 3 -S -n | grep -i processed | awk '{printf $6}'", "r");
 	if (fp == NULL ) {
 		printf("Failed to run command, check user\n");
 		exit(1);
 	}
 	while (fgets(path, sizeof(path)-1, fp) != NULL){
 		printf("%s", path);
+		printf("\n");
 	}
 
 
