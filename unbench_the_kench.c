@@ -36,7 +36,7 @@ int main () {
 	}
 	PQclear(res);
 
-	res = PQexec(conn, "CREATE database benchmark");
+	res = PQexec(conn, "CREATE DATABASE benchmark");
 		if (PQresultStatus(res) != PGRES_COMMAND_OK) {
 			do_exit(conn, res);
 		}
