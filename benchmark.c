@@ -66,11 +66,10 @@ int main (int argc, char *argv[]) {
 		printf("%s", path);
 	}
 
-	pclose(fp);
 
-	return 0;
 }
 	
+	pclose(fp);
 
 	PQclear(res);
 	PQfinish(conn);
