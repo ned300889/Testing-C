@@ -54,6 +54,9 @@ int main (int argc, char *argv[]) {
 	FILE *fp;
 	char path[1035];
 	int i;
+	int num[15];
+	int sum = 0;
+	int avg = 0;
 
 	for ( i = 0 ; i <= 15; i++){ 
 	
@@ -63,12 +66,20 @@ int main (int argc, char *argv[]) {
 		exit(1);
 	}
 	while (fgets(path, sizeof(path)-1, fp) != NULL){
-		printf("%s", path);
+	num[i] = printf("%s", path);
 		printf("\n");
+		/*scanf("%s", &num[i]);*/
+	}
 	}
 
+	for ( i = 0 ; i <=15; i++){
+		sum = sum+num[i];
+	}
 
-}
+	avg = sum/15;
+	printf("Average of entered number is: %d", avg);
+	
+
 	
 	pclose(fp);
 
